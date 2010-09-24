@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Android DateTimePickerDialog Demo</string>
+    <string name="log_tag_prefix">Android DateTimePickerDialog Demo:</string>
+    <string name="main_activity_label">Android DateTimePickerDialog Demo</string>
+</resources>
