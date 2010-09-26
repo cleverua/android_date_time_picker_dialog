@@ -1,6 +1,8 @@
 == DESCRIPTION
 
-The Android API provides nice subclasses of AlertDialog to pick a Date (DatePickerDialog) or a Time (TimePickerDialog). However sometimes we'd like to pick both Date and Time at a time (using the only dialog). This project solves this by introducing the DateTimePickerDialog.
+The Android API provides nice subclasses of AlertDialog to pick a Date (DatePickerDialog) or a Time (TimePickerDialog). However sometimes we'd like to pick both Date and Time at a time (using the only dialog). This project solves this by introducing the DateTimePickerDialog:
+
+DateTimePickerDialog[http://assets.cleverua.com/images/android_datetimepickerdialog_screenshot.png]
 
 === Usage
 
