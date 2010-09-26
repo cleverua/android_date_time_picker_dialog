@@ -1,0 +1,31 @@
+== DESCRIPTION
+
+The Android API provides nice subclasses of AlertDialog to pick a Date (DatePickerDialog) or a Time (TimePickerDialog). However sometimes we'd like to pick both Date and Time at a time (using the only dialog). This project solves this by introducing the DateTimePickerDialog.
+
+=== Usage
+
+The usage is similar to any other AlertDialog you would normally use. The substantial peculiarity is to pass an instance of DateTimePickerDialog.DateTimeAcceptor - it will get long UTC value of the datetime user picks.
+
+  @Override
+  protected Dialog onCreateDialog(int id) {
+      if (id == DIALOG_PICK_DATETIME_ID) {
+          return new DateTimePickerDialog(
+              YourActivity.this, 
+              new DateTimePickerDialog.DateTimeAcceptor() {
+                  public void accept(long datetime) {
+                      Log.d("acceptDatetime: got datetime = " + datetime);
+                      // do smth useful here
+                  }
+              },
+              System.currentTimeMillis();
+          );
+      }
+      
+      return super.onCreateDialog(id);
+  }
+
+Please, make sure you've checked the source code for more usage details.
+
+== EXAMPLES
+
+To see an example please launch the Android DateTimePickerDialog Demo application in Android device emulator.
