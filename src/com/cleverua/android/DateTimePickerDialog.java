@@ -4,14 +4,12 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.DatePicker;
-import android.widget.ScrollView;
+import android.widget.FrameLayout;
 import android.widget.TimePicker;
-
-import com.cleverua.android.R;
-import com.cleverua.android.DateHelper;
 
 public class DateTimePickerDialog extends AlertDialog {
 
@@ -22,6 +20,8 @@ public class DateTimePickerDialog extends AlertDialog {
     private static final String CANCEL        = "Cancel";
     
     private static final String STATE_DATETIME_KEY = "DateTimePickerDialog.datetime";
+    
+    private static final String TIME_FORMAT_24 = "24";
     
     private DatePicker datePicker;
     private TimePicker timePicker;
@@ -51,8 +51,8 @@ public class DateTimePickerDialog extends AlertDialog {
         
         final LayoutInflater factory = LayoutInflater.from(context);
         
-        final ScrollView pickersContainer = 
-            (ScrollView) factory.inflate(R.layout.date_time_picker, null);
+        final FrameLayout pickersContainer = 
+            (FrameLayout) factory.inflate(R.layout.date_time_picker, null);
         
         datePicker = (DatePicker) pickersContainer.findViewById(R.id.date);
         timePicker = (TimePicker) pickersContainer.findViewById(R.id.time);
@@ -102,6 +102,11 @@ public class DateTimePickerDialog extends AlertDialog {
     }
     
     public void resetDatetime(long datetime) {
+        // honor user settings as to time format
+        final String timeFormat = 
+            Settings.System.getString(getContext().getContentResolver(), Settings.System.TIME_12_24);
+        timePicker.setIs24HourView(TIME_FORMAT_24.equals(timeFormat));
+        
         DateHelper.initDatePicker(datePicker, datetime);
         DateHelper.initTimePicker(timePicker, datetime);
     }
